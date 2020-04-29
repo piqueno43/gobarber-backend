@@ -83,7 +83,7 @@ pm2 logs (Show log stream)
 pm2 flush (Clear logs)
 
 # To make sure app starts when reboot
-pm2 startup ubuntu
+pm2 startup systemd
 ```
 ### You should now be able to access your app using your IP and port. Now we want to setup a firewall blocking that port and setup NGINX as a reverse proxy so we can access it directly using port 80 (http)
 
@@ -155,3 +155,23 @@ certbot renew --dry-run
 ```
 
 Now visit https://yourdomain.com and you should see your Node app
+
+## 11. Continuous integration
+
+  Github
+  Add a new pipeline
+  Select On push
+  Single branch master
+  Select Digital Ocean Account
+  Buddy's SSH Key
+
+  Comands ex.
+  ```
+  npm install
+  npm run build
+  npx sequelize db:migrate
+  pm2 restart server
+  pm2 restart queue
+  ```
+
+  Send Email notification
