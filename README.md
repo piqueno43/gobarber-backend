@@ -18,6 +18,15 @@ If you use the referal link below, you get
     cd .ssh
     cp ~/.ssh/authorized_keys .
     chown deploy:deploy authorized_keys
+
+    sudo vim /etc/ssh/sshd_config
+
+    #TCPKeepAlive yes
+    #ClientAliveInterval 30
+    #ClientAliveCountMax 9999
+
+    sudo service ssh restart
+
 ```
  I will be using the root user, but would suggest creating a new user
 
@@ -52,7 +61,14 @@ npm install
 npm start (or whatever your start command)
 # stop app
 ctrl+C
+
+docker exec -it postgres /bin/sh
+su postgres
+psql > CREATE DATABASE database;
+
+npx sequelize db:migrate
 ```
+
 ## 6. Setup PM2 process manager to keep your app running
 ```
 sudo npm i pm2 -g
@@ -127,7 +143,7 @@ Choose "Custom nameservers" and add these 3
 
 It may take a bit to propogate
 
-10. Add SSL with LetsEncrypt
+## 10. Add SSL with LetsEncrypt
 ```
 sudo add-apt-repository ppa:certbot/certbot
 sudo apt-get update
