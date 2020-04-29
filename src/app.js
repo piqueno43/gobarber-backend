@@ -25,7 +25,12 @@ class App {
 
   middlewares() {
     this.server.use(Sentry.Handlers.requestHandler());
-    this.server.use(cors({ origin: 'https://gobarber.edivaldo.app' }));
+    this.server.use(
+      cors({
+        origin: 'https://gobarber.edivaldo.app',
+        optionsSuccessStatus: 200,
+      })
+    );
     this.server.use(express.json());
     this.server.use(
       '/files',
