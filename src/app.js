@@ -27,7 +27,7 @@ class App {
     this.server.use(Sentry.Handlers.requestHandler());
     this.server.use(
       cors({
-        origin: 'https://gobarber.edivaldo.app',
+        origin: 'https://gobarber.edivaldo.dev',
       })
     );
     this.server.use(express.json());
